@@ -1,5 +1,9 @@
 import { useState } from 'react';
-function DemoSearch ({params, setParams}) {
+import { Input, Select, Form } from 'antd';
+const { Option } = Select;
+function DemoSearch (props) {
+  const {params, setParams} = props;
+  console.log(props)
   const [ users ] = useState([
     {
       name: '负责人',
@@ -15,12 +19,16 @@ function DemoSearch ({params, setParams}) {
       id: 3
     }])
   return (
-    <div>
-      <input placeholder="项目名称" value={params.name} onChange={(e) => {setParams({...params, name: e.target.value})}}/>
-      <select value={params.id} onChange={(e) => { setParams({...params, id: e.target.value});}}>
-        {users.map(item => <option key={item.id} value={item.id}>{item.name}</option>)}
-      </select>
-    </div>
+    <Form>
+      <Form.Item>
+        <Input placeholder="项目名称" value={params.name} onChange={(e) => {setParams({...params, name: e.target.value})}}/>
+      </Form.Item>
+      <Form.Item>
+        <Select value={params.id} onChange={(val) => { setParams({...params, id: val});}}>
+          {users.map(item => <Option key={item.id} value={item.id}>{item.name}</Option>)}
+        </Select>
+      </Form.Item>
+    </Form>
   )
 }
   

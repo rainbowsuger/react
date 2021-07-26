@@ -1,4 +1,5 @@
-import React, { useRef } from 'react'
+import React from 'react'
+import { Button } from 'antd';
 
 function DemoRef({inputRef}) {
   console.log('回调形式inputRef，行内函数，每次update就是执行render的时候 都调用一次  ====', inputRef);
@@ -11,15 +12,15 @@ function DemoRef({inputRef}) {
   }
   return (
     <div>
+    <h2>内联函数，每次update就是执行render的时候 都调用一次</h2>
     <input ref={inputRef}/>
     <input
         type="text"
         ref={textInput} />
-      <input
-        type="button"
-        value="Focus the text input"
+      <Button
+        type="primary"
         onClick={handleClick}
-      />
+      >Focus the text input</Button>
     </div>
     
   )
