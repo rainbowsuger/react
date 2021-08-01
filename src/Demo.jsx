@@ -8,6 +8,7 @@ import DemoForm from './DemoForm.jsx';
 import DemoShowHide from './DemoShowHide.jsx';
 import DemoShowHideLifecycle from './DemoShowHideLifecycle.jsx';
 import DemoCount from './DemoCount.jsx';
+import DemoFomily from './DemoFomily.jsx';
 import { Button } from 'antd';
 import Store from './redux/index';
 import { Route, NavLink, Switch, Redirect } from 'react-router-dom'
@@ -70,6 +71,9 @@ function Demo() {
           <li>
             <NavLink activeClassName="nav-link-active" to="/DemoCount" className="content-nav-link">DemoCount</NavLink>
           </li>
+          <li>
+            <NavLink activeClassName="nav-link-active" to="/DemoFomily" className="content-nav-link">DemoFomily</NavLink>
+          </li>
         </ul>
         <Switch>
           <Route path='/DemoSearch'>
@@ -90,6 +94,7 @@ function Demo() {
             <DemoShowHideLifecycle name="DemoShowHideLifecycle"></DemoShowHideLifecycle>
           </Route>
           <Route exact path='/DemoCount' component={DemoCount}></Route>
+          <Route exact path='/DemoFomily' component={DemoFomily}></Route>
           <Route path='/404'>
             <h1>抱歉，您的页面找不到。</h1>
           </Route>
