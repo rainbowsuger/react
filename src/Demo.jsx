@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useMount, useDebouce } from './cusEffect';
+import { Button } from 'antd';
 import './Demo.css';
 import DemoSearch from './DemoSearch.jsx'
 import DemoList from './DemoList.jsx'
@@ -7,10 +8,9 @@ import DemoRef from './DemoRef.jsx'
 import DemoForm from './DemoForm.jsx';
 import DemoShowHide from './DemoShowHide.jsx';
 import DemoShowHideLifecycle from './DemoShowHideLifecycle.jsx';
-import DemoCount from './DemoCount.jsx';
+import DemoReduxCount from './container/DemoCount.jsx';
+import DemoReduxPerson from './container/DemoPerson.jsx';
 import DemoFomily from './DemoFomily.jsx';
-import { Button } from 'antd';
-import Store from './redux/index';
 import { Route, NavLink, Switch, Redirect } from 'react-router-dom'
 function Demo() {
   const [params, setParams] = useState({
@@ -18,14 +18,14 @@ function Demo() {
     id: 0
   })
   const [list, setList] = useState([]);
-  const [store, setStore] = useState([]);
   const debouceParams = useDebouce(params, 2000)
   
+  // 检测store变化刷新页面
   useEffect(() => {
     console.log('防抖操作结束之后触发' );
-    Store.subscribe(() => {
-      setStore({})
-    })
+    // StoreRedux.subscribe(() => {
+    //   setStore({})
+    // })
     setList([{
           name: '负责人',
           id: 0
@@ -69,7 +69,8 @@ function Demo() {
             <NavLink activeClassName="nav-link-active" to="/DemoShowHideLifecycle" className="content-nav-link">DemoShowHideLifecycle</NavLink>
           </li>
           <li>
-            <NavLink activeClassName="nav-link-active" to="/DemoCount" className="content-nav-link">DemoCount</NavLink>
+            <NavLink activeClassName="nav-link-active" to="/DemoReduxCount" className="content-nav-link">DemoReduxCount</NavLink>
+            <NavLink activeClassName="nav-link-active" to="/DemoReduxPerson" className="content-nav-link">DemoReduxPerson</NavLink>
           </li>
           <li>
             <NavLink activeClassName="nav-link-active" to="/DemoFomily" className="content-nav-link">DemoFomily</NavLink>
@@ -93,7 +94,12 @@ function Demo() {
           <Route exact path='/DemoShowHideLifecycle'>
             <DemoShowHideLifecycle name="DemoShowHideLifecycle"></DemoShowHideLifecycle>
           </Route>
-          <Route exact path='/DemoCount' component={DemoCount}></Route>
+          <Route exact path='/DemoReduxCount'>
+            <DemoReduxCount></DemoReduxCount>
+          </Route>
+          <Route exact path='/DemoReduxPerson'>
+            <DemoReduxPerson></DemoReduxPerson>
+          </Route>
           <Route exact path='/DemoFomily' component={DemoFomily}></Route>
           <Route path='/404'>
             <h1>抱歉，您的页面找不到。</h1>
